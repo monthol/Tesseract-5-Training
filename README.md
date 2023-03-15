@@ -62,16 +62,33 @@ Build Tesseract with training tools run the following, see [Compiling–GitInsta
 	sudo make training-install    
 ```
 
-Tesseract is now installed, check it out:
+Tesseract is now installed, run this command to check it out `tesseract -v`, the screen now should show something like:
 
 ```
-	tesseract -v
+	tesseract 5.3.0
+	leptonica-1.82.0
+     libgif 5.1.9 : libjpeg 8d (libjpeg-turbo 2.1.1) : libpng 1.6.37 : libtiff 4.3.0 : zlib 1.2.11 : libwebp 1.2.2 : libopenjp2 2.4.0
+    Found AVX512BW
+    Found AVX512F
+    Found AVX512VNNI
+    Found AVX2
+    Found AVX
+	Found FMA
+	Found SSE4.1
+	Found OpenMP 201511
 ```
 ## OCR with Thai language
-Get the best (most accurated) trained model for the language at [tessdata_best](https://github.com/tesseract-ocr/tessdata_best) repository. By default the trained model (.trainedata) is install at Tesseract's `tessdata` directory (e.g. `/usr/local/share/tessdata`) 
+Get the best (most accurated) trained model for the language at [tessdata_best](https://github.com/tesseract-ocr/tessdata_best) repository, save it to `tessdata` directory (i.e. `/usr/local/share/tessdata`), where Tesseract looks for the language file (.traineddata).  
 
 ```
-wget https://raw.githubusercontent.com/tesseract-ocr/tessdata_best/master/tha.traineddata
+	wget https://raw.githubusercontent.com/tesseract-ocr/tessdata_best/master/tha.traineddata -P /usr/local/share/tessdata
+```
+
+List the support languages on screen with this command `tesseract --list-langs`.
+
+```
+   eng
+   tha
 ```
 
 ### Try OCR Thai text with this [image](https://drive.google.com/file/d/1l-lUKGSAjCIhrhqgu959EGynNbnxyWlY/view?usp=share_link)
