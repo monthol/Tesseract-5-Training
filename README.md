@@ -1,14 +1,10 @@
-#Training New Fonts with Tesseract 5
-Training with Tesseract requires it to be built from source, not the installer.
+# Training New Fonts with Tesseract 5
+Training with Tesseract is not possible with the installer. It is required to be built from source. 
 ## Install Linux on Windows with WSL (Windows Subsystem for Linux)
-Open PowerShell or Windows Command Prompt in administrator mode by right-clicking and selecting "Run as administrator", enter the `wsl --install` command, then restart your machine. For more info, refer to [Microsoft](https://learn.microsoft.com/en-us/windows/wsl/setup/environment#set-up-your-linux-username-and-password).
-
-```
-    wsl --install
-```
+Open PowerShell in administrator mode by right-clicking and selecting "Run as administrator", enter the `wsl --install` command, then restart your machine. After the installation is complete, setup your new username/password. Please note that whilst entering the Password, nothing will appear on screen. For more info, please refer to [Microsoft](https://learn.microsoft.com/en-us/windows/wsl/setup/environment#set-up-your-linux-username-and-password).
 
 ## Install Tesseract
-Enter WSL from Powershell terminal, we are going to install tesseract on the root folder. Go to root folder with command
+Enter WSL from Powershell terminal if you are not yet on Linux, then go to your root user directory, we are going to install Tesseract on the root folder.
 
 ```
     wsl
@@ -50,7 +46,7 @@ Select the latest version (5.3.0)
     git checkout 5.3.0
 ```
 
-Build Tesseract with training tools run the following, see [Compiling–GitInstallation](https://tesseract-ocr.github.io/tessdoc/Compiling-%E2%80%93-GitInstallation.md) for details:
+Build Tesseract with training tools run the following one line at a time, see [Compiling–GitInstallation](https://tesseract-ocr.github.io/tessdoc/Compiling-%E2%80%93-GitInstallation.md) for details:
 
 ```
     ./autogen.sh
