@@ -35,14 +35,12 @@ First updating sources, install all dependencies and training tools (copy/paste 
 	sudo apt-get install libcairo2-dev
 	sudo apt-get install libleptonica-dev
 	sudo apt install bc
-
 ```
 
-Clone the Tesseract repository from github. (Run each command a line at at time)
+Clone the Tesseract repository from github.
 
 ```
 	git clone https://github.com/tesseract-ocr/tesseract.git
-
 ```
 
 Select the latest version (5.3.0)
@@ -69,7 +67,22 @@ Tesseract is now installed, check it out:
 ```
 	tesseract -v
 ```
+## OCR with Thai language
+Get the best (most accurated) trained model for the language at [tessdata_best](https://github.com/tesseract-ocr/tessdata_best) repository. By default the trained model (.trainedata) is install at Tesseract's `tessdata` directory (e.g. `/usr/local/share/tessdata`) 
 
+```
+wget https://raw.githubusercontent.com/tesseract-ocr/tessdata_best/master/tha.traineddata
+```
+
+### Try OCR Thai text with this [image](https://drive.google.com/file/d/1l-lUKGSAjCIhrhqgu959EGynNbnxyWlY/view?usp=share_link)
+
+```
+	cd
+	mkdir images
+	wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1l-lUKGSAjCIhrhqgu959EGynNbnxyWlY' -O images/023.jpg
+	tesseract -l tha images/023.jpg stdout
+```
+	
 ## Install tesstrain
 `tesstrain` is a set of Python tools that allow us to work with make files to train custom Tesseract models
 
