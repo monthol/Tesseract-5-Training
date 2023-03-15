@@ -68,11 +68,11 @@ Tesseract is now installed, run this command to check it out `tesseract -v`, the
 	tesseract 5.3.0
 	leptonica-1.82.0
      libgif 5.1.9 : libjpeg 8d (libjpeg-turbo 2.1.1) : libpng 1.6.37 : libtiff 4.3.0 : zlib 1.2.11 : libwebp 1.2.2 : libopenjp2 2.4.0
-    Found AVX512BW
-    Found AVX512F
-    Found AVX512VNNI
-    Found AVX2
-    Found AVX
+	Found AVX512BW
+	Found AVX512F
+	Found AVX512VNNI
+	Found AVX2
+	Found AVX
 	Found FMA
 	Found SSE4.1
 	Found OpenMP 201511
