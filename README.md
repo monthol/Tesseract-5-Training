@@ -1,19 +1,20 @@
 #Training New Fonts with Tesseract 5
+Training with Tesseract requires it to be built from source, not the installer.
 ## Install Linux on Windows with WSL (Windows Subsystem for Linux)
-Open PowerShell or Windows Command Prompt in administrator mode by right-clicking and selecting "Run as administrator", enter the wsl --install command, then restart your machine. For more info, refer to [Microsoft](https://learn.microsoft.com/en-us/windows/wsl/setup/environment#set-up-your-linux-username-and-password).
+Open PowerShell or Windows Command Prompt in administrator mode by right-clicking and selecting "Run as administrator", enter the `wsl --install` command, then restart your machine. For more info, refer to [Microsoft](https://learn.microsoft.com/en-us/windows/wsl/setup/environment#set-up-your-linux-username-and-password).
 
 ```
 	wsl --install
 ```
 
-### Install
+## Install Tesseract
 Enter WSL from Powershell terminal, we are going to install tesseract on the root folder. Go to root folder with command
 
 ```
 	wsl
 	cd
 ```
-## Install Tesseract
+
 First updating sources, install all dependencies and training tools (copy/paste all and run in one go)
 
 ```
