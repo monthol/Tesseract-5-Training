@@ -1,5 +1,7 @@
 # Training New Fonts with Tesseract 5
-Training with Tesseract is not possible with the installer. It is required to be built from source. 
+In this tutoring we will fine tune existing model to better read custom fonts, for this it is required Tesseract to be built from source since training Tesseract is not possible with the binary installer.
+### So what fonts have standard Tesseract been trained with?
+See 'okfonts.txt' in each language folder of training data repository [langdata_lstm](https://github.com/tesseract-ocr/langdata_lstm). 
 ## Install Linux on Windows with WSL (Windows Subsystem for Linux)
 Open PowerShell in administrator mode by right-clicking and selecting "Run as administrator", enter the `wsl --install` command, then restart your machine. After the installation is complete, setup your new username/password. Please note that whilst entering the Password, nothing will appear on screen. For more info, please refer to [Microsoft](https://learn.microsoft.com/en-us/windows/wsl/setup/environment#set-up-your-linux-username-and-password).
 
