@@ -79,6 +79,7 @@ Tesseract is now installed, run this command `tesseract -v` to check it out, the
 Get the best (most accurated) trained model for the language at [tessdata_best](https://github.com/tesseract-ocr/tessdata_best) repository, save it to `tessdata` directory (i.e. `/usr/local/share/tessdata`), where Tesseract looks for the language file (.traineddata).
 
 ```
+    wget https://raw.githubusercontent.com/tesseract-ocr/tessdata_best/master/eng.traineddata -P /usr/local/share/tessdata
     wget https://raw.githubusercontent.com/tesseract-ocr/tessdata_best/master/tha.traineddata -P /usr/local/share/tessdata
 ```
 
