@@ -1,5 +1,5 @@
 # Training New Fonts with Tesseract 5
-In this tutoring we will fine tune existing model to better read custom fonts, for this it is required Tesseract to be built from source since training Tesseract is not possible with the binary installer.
+In this tutorial we will fine tune existing model to better read custom fonts, for this it is required Tesseract to be built from source as training Tesseract is not possible with the binary installer.
 ### So what fonts have standard Tesseract been trained with?
 See 'okfonts.txt' in each language folder of training data repository [langdata_lstm](https://github.com/tesseract-ocr/langdata_lstm). 
 ## Install Linux on Windows with WSL (Windows Subsystem for Linux)
@@ -60,7 +60,7 @@ Build Tesseract with training tools by running the following one line at a time,
     sudo make training-install    
 ```
 
-Tesseract is now installed, run this command to check it out `tesseract -v`, the screen now should show something like:
+Tesseract is now installed, run this command `tesseract -v` to check it out, the screen now should show something like:
 
 ```
     tesseract 5.3.0
