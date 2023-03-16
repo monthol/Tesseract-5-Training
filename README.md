@@ -46,7 +46,7 @@ Select the latest version (5.3.0)
     git checkout 5.3.0
 ```
 
-Build Tesseract with training tools run the following one line at a time, see [Compiling–GitInstallation](https://tesseract-ocr.github.io/tessdoc/Compiling-%E2%80%93-GitInstallation.md) for details:
+Build Tesseract with training tools by running the following one line at a time, see [Compiling–GitInstallation](https://tesseract-ocr.github.io/tessdoc/Compiling-%E2%80%93-GitInstallation.md) for details:
 
 ```
     ./autogen.sh
@@ -74,7 +74,7 @@ Tesseract is now installed, run this command to check it out `tesseract -v`, the
     Found OpenMP 201511
 ```
 ## OCR with Thai language
-Get the best (most accurated) trained model for the language at [tessdata_best](https://github.com/tesseract-ocr/tessdata_best) repository, save it to `tessdata` directory (i.e. `/usr/local/share/tessdata`), where Tesseract looks for the language file (.traineddata).  
+Get the best (most accurated) trained model for the language at [tessdata_best](https://github.com/tesseract-ocr/tessdata_best) repository, save it to `tessdata` directory (i.e. `/usr/local/share/tessdata`), where Tesseract looks for the language file (.traineddata).
 
 ```
     wget https://raw.githubusercontent.com/tesseract-ocr/tessdata_best/master/tha.traineddata -P /usr/local/share/tessdata
@@ -95,48 +95,3 @@ List the support languages on screen with this command `tesseract --list-langs`.
     wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1l-lUKGSAjCIhrhqgu959EGynNbnxyWlY' -O images/023.jpg
     tesseract -l tha images/023.jpg stdout
 ```
-    
-## Install tesstrain
-`tesstrain` is a set of Python tools that allow us to work with make files to train custom Tesseract models
-
-```
-    git clone https://github.com/tesseract-ocr/tesstrain.git
-``` 
-
-## Get Language Data (langdata)
-
-
-## Create ground truth and box files
-Tesseract 5 requires images with single-line text for training, we can run `text2image` tool (installed with Tesseract) with this [Python script](https://github.com/astutejoe/tesseract_tutorial/blob/main/split_training_text.py) to create ground truth image and box file (please install Python3 if not yet done).
-
-### List all available fonts
-
-```
-    text2image --fonts_dir /usr/share/fonts –list_available_fonts
-```
-
-### List font for particular language to file
-
-```
-    text2image --find_fonts \
-    --fonts_dir /usr/share/fonts \
-    --text ./langdata/tha/tha.training_text \
-    --min_coverage .9 \
-    --outputbase ./langdata/tha/tha \
-    |& grep raw \
-    | sed -e 's/ :.*/@ \\/g' \
-    | sed -e "s/^/  '/" \
-    | sed -e "s/@/'/g" > ./langdata/tha/fontslist.txt
- ```
-
-### Installing new fonts on WSL
-First copy font file (.otf) to the font folder
-
- ```
-    cp /mnt/c/Users/<path to font file> /usr/local/share/fonts
-    cd /usr/local/share/fonts
-    fc-cache -f -v
-    fc-list | grep "<name-of-font>" #This checks if fonts installed correctly
- ```
-
-Or use existing Windows fonts by [following instruction here](https://x410.dev/cookbook/wsl/sharing-windows-fonts-with-wsl/):
