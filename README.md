@@ -167,4 +167,37 @@ Tesseract 5 requires images with single-line text for training, for this we can 
 Running the python script generates sets of three files: tif image `.tif`, ground-truth text `.gt.txt` and coordinate of each letter's box `.box`, as many as `count` parameter, to the output directory.  
     
 ## 4. Training
+We start training the model with small number of iterations (e.g. 200)
+```
+    cd tesstrain
+    make make training MODEL_NAME=<model_name> START_MODEL=tha TESSDATA=../tesseract/tessdata MAX_ITERATIONS=200
+```
 
+The result screen from the training :-
+
+```
+2 Percent improvement time=100, best error was 100 @ 0
+At iteration 100/100/100, Mean rms=5.949000%, delta=59.381000%, BCER train=54.457000%, BWER train=93.801000%, skip ratio=0.000000%,  New best BCER = 54.457000 wrote best model:data/JasmineD/checkpoints/JasmineD_54.457000_100_100.checkpoint wrote checkpoint.
+
+At iteration 200/200/200, Mean rms=6.002000%, delta=58.242000%, BCER train=70.099000%, BWER train=96.113000%, skip ratio=0.000000%,  New worst BCER = 70.099000 wrote checkpoint.
+
+Finished! Selected model with minimal training error rate (BCER) = 54.457
+lstmtraining \
+--stop_training \
+--continue_from data/JasmineD/checkpoints/JasmineD_checkpoint \
+--traineddata data/JasmineD/JasmineD.traineddata \
+--model_output data/JasmineD.traineddata
+Loaded file data/JasmineD/checkpoints/JasmineD_checkpoint, unpacking...
+```
+
+The training will create .lstmf for each successful training of an image under the ground truth folder and `.traineddata under `<model-name>` folder. We will try to optimize the BCER error rate by increase the number of iterations (default value is `10000`) in the next run.
+
+If something went wrong, we can start over by cleaning up with command :
+```
+    make clean MODEL_NAME=<model_name>
+```
+5. Evaluate and deploy new model
+    
+To train handwriting text, first create one-line images of handwriting, labeling can be done with this [R package tool](https://github.com/arcruz0/tesseractgt) to help speed things up. Also, see [its blog post](https://arcruz0.github.io/posts/finetuning-tess/index.html) for training with addtional characters not included in `.unicharset` (e.g. ๚, ๛, ๏)
+    
+    
