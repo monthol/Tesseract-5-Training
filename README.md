@@ -170,7 +170,7 @@ Running the python script generates sets of three files: tif image `.tif`, groun
 We start training the model with small number of iterations (e.g. 200)
 ```
     cd tesstrain
-    make make training MODEL_NAME=<model_name> START_MODEL=tha TESSDATA=../tesseract/tessdata MAX_ITERATIONS=200
+    make training MODEL_NAME=<model_name> START_MODEL=tha TESSDATA=../tesseract/tessdata MAX_ITERATIONS=200
 ```
 
 The result screen from the training :-
@@ -204,7 +204,7 @@ To deploy new model, just copy `<model-name>.traineddata` to tesseract 's `tessd
 ```
     cp tesstrain/data/<model-name>/<model-name>.traineddata /usr/local/share/tessdata
 ```    
-    
-To train handwriting text, first create one-line images of handwriting, labeling can be done with this [R package tool](https://github.com/arcruz0/tesseractgt) to help speed things up. Also, see [its blog post](https://arcruz0.github.io/posts/finetuning-tess/index.html) for training with addtional characters not included in `.unicharset` (e.g. ๚, ๛, ๏)
+### Training for handwritten text or additional characters
+To train handwritten text, first create one-line images of handwriting, labeling can be done with this [R package tool](https://github.com/arcruz0/tesseractgt) to help speed things up. Also, see [its blog post](https://arcruz0.github.io/posts/finetuning-tess/index.html) for training with addtional characters not included in `.unicharset` (e.g. ๚, ๛, ๏)
     
     
