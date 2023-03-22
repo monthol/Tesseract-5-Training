@@ -156,12 +156,16 @@ Or use existing Windows fonts by [following instruction here](https://x410.dev/c
 
 ### 3.3 Create ground truth and box files
 Tesseract 5 requires images with single-line text for training, for this we can use this [Python script](https://github.com/astutejoe/tesseract_tutorial/blob/main/split_training_text.py) to create ground truth images and transcription from our `langdata` as many as we like. This script in turn run [`text2image`](https://github.com/tesseract-ocr/tesseract/blob/main/doc/text2image.1.asc) tool that installed with Tesseract. (please install Python3 if not yet done). Edit this script to reflect our project-
+
 > Line 6 -- point to training text path (e.g. 'langdata/tha/tha.training_text')
+
 > Line 14 -- new model name (e.g. use font name for model name 'tesstrain/data/<font-name>-ground-truth')
+
 > Line 21 -- `count` is number of generated lines (files)
 > Line 36 -- the font name used to generated image files, and so to be trained
 > Line 43 -- width size of the generated image, `6000` is recommended for Thai language.
 > Line 48 -- path to unicharset file e.g. '--unicharset_file=langdata/tha/tha.unicharset'
+
 Running the python script generates sets of three files: tif image `.tif`, ground-truth text `.gt.txt` and coordinate of each letter's box `.box`, as many as `count` parameter, to the output directory.  
     
 ## 4. Training
