@@ -164,7 +164,7 @@ Tesseract 5 requires images with single-line text for training, for this we can 
 > Line 43 -- width size of the generated image, `6000` is recommended for Thai language.  
 > Line 48 -- path to unicharset file e.g. '--unicharset_file=langdata/tha/tha.unicharset'  
 
-Running the python script generates sets of three files: tif image `.tif`, ground-truth text `.gt.txt` and coordinate of each letter's box `.box`, as many as `count` parameter, to the output directory.  
+Running the python script generates sets of three files: tif image `.tif`, ground-truth text `.gt.txt` and coordinate of each letter's box `.box`, as many as `count` parameter, to the output directory. [See some file samples here](https://drive.google.com/drive/folders/198sJ5iAyqhtEMoMqy0oE0Td3SKK_gtyf?usp=sharing).
     
 ## 4. Training
 We start training the model with small number of iterations (e.g. 200)
@@ -189,8 +189,9 @@ lstmtraining \
 --model_output data/JasmineD.traineddata
 Loaded file data/JasmineD/checkpoints/JasmineD_checkpoint, unpacking...
 ```
-
-The training will create `.lstmf` file for each successful training of an image under the ground truth folder and `.traineddata` under `<model-name>` folder. Here We try to optimize the BCER error rate by increase the number of iterations (default value is `10000`) or the number of training data (`count` in the python script) in the next run.
+The command first create training data set `.lstmf` files, one for each successful training of an image under the ground truth folder and `.traineddata` under `<model-name>` folder, to be used in training.
+The iteration number are `learning`/`training`/`samples` iteration, as not all samples can be used for training, e.g. bad box file, and some training iteration does not yield any learning (delta=0).    
+Here we try to optimize the BCER error rate by increase the number of iterations (default value is `10000`) or the number of training data (`count` in the python script) in the next run.
 If something went wrong or maybe we want to increase `count` number, we can start over by cleaning up with command :
     
 ```
