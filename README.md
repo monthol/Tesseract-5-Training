@@ -110,9 +110,9 @@ List the support languages on screen with this command `tesseract --list-langs`.
     make tesseract-langdata
 ``` 
 
-## Create Training Data 
+## 3. Create Training Data 
 
-### Get Language Data
+### 3.1 Get Language Data
 [langdata](https://github.com/tesseract-ocr/langdata) repository provides source training data for Tesseract for lots of languages. We need at least English data to begin with, plus additional languages we do training (Thai, in this case).
 Go to this [Google Drive folder](https://drive.google.com/drive/folders/1UZNBOdP7aAzLiTQrlFPoLIlojisw7jKi?usp=sharing) and download `eng` and `tha` to your local C drive
 ```
@@ -121,17 +121,14 @@ Go to this [Google Drive folder](https://drive.google.com/drive/folders/1UZNBOdP
     cp -r /mnt/c/.../eng .
     cp -r /mnt/c/.../tha .   
 ```
-
-### Create ground truth and box files
-Tesseract 5 requires images with single-line text for training, we can run `text2image` tool (installed with Tesseract) with this [Python script](https://github.com/astutejoe/tesseract_tutorial/blob/main/split_training_text.py) to create ground truth image and box file (please install Python3 if not yet done).
-
-### List all available fonts
+### 3.2 Get Fonts
+#### List all available fonts on local computer
 
 ```
     text2image --fonts_dir /usr/share/fonts –list_available_fonts
 ```
 
-### List font for particular language to file
+#### List font for particular language to file
 
 ```
     text2image --find_fonts \
@@ -145,7 +142,7 @@ Tesseract 5 requires images with single-line text for training, we can run `text
     | sed -e "s/@/'/g" > ./langdata/tha/fontslist.txt
  ```
 
-### Installing new fonts on WSL
+#### Installing new fonts on WSL
 First copy font file (.otf) to the font folder
 
  ```
@@ -157,6 +154,15 @@ First copy font file (.otf) to the font folder
 
 Or use existing Windows fonts by [following instruction here](https://x410.dev/cookbook/wsl/sharing-windows-fonts-with-wsl/):
 
-## Training
-
+### 3.3 Create ground truth and box files
+Tesseract 5 requires images with single-line text for training, for this we can use this [Python script](https://github.com/astutejoe/tesseract_tutorial/blob/main/split_training_text.py) to create ground truth images and transcription from our `langdata` as many as we like. This script in turn run [`text2image`](https://github.com/tesseract-ocr/tesseract/blob/main/doc/text2image.1.asc) tool that installed with Tesseract. (please install Python3 if not yet done). Edit this script to reflect our project-
+> Line 6 -- point to training text path (e.g. 'langdata/tha/tha.training_text')
+> Line 14 -- new model name (e.g. use font name for model name 'tesstrain/data/<font-name>-ground-truth')
+> Line 21 -- `count` is number of generated lines (files)
+> Line 36 -- the font name used to generated image files, and so to be trained
+> Line 43 -- width size of the generated image, `6000` is recommended for Thai language.
+> Line 48 -- path to unicharset file e.g. '--unicharset_file=langdata/tha/tha.unicharset'
+Running the python script generates sets of three files: tif image `.tif`, ground-truth text `.gt.txt` and coordinate of each letter's box `.box`, as many as `count` parameter, to the output directory.  
+    
+## 4. Training
 
