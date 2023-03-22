@@ -2,7 +2,7 @@
 In this tutorial we will fine tune existing model to better read custom fonts, for this it is required Tesseract to be built from source as training Tesseract is not possible with the binary installer.
 #### So what fonts have standard Tesseract been trained with?
 See `okfonts.txt` in each language folder of training data repository [langdata_lstm](https://github.com/tesseract-ocr/langdata_lstm).
-## Build Tesseract from Source with Training Tools
+## 1. Build Tesseract from Source with Training Tools
 ### Install Linux on Windows with WSL (Windows Subsystem for Linux)
 Open PowerShell in administrator mode by right-clicking and selecting "Run as administrator", enter the `wsl --install` command, then restart your machine. After the installation is complete, setup your new username/password. Please note that whilst entering the Password, nothing will appear on screen. For more info, please refer to [Microsoft](https://learn.microsoft.com/en-us/windows/wsl/setup/environment#set-up-your-linux-username-and-password).
 
@@ -80,8 +80,8 @@ Tesseract is now installed, run this command `tesseract -v` to check it out, the
 Get the best (most accurated) trained model for the language at [tessdata_best](https://github.com/tesseract-ocr/tessdata_best) repository, save it to `tessdata` directory (i.e. `/usr/local/share/tessdata`), where Tesseract looks for the language file (.traineddata).
 
 ```
-    wget https://raw.githubusercontent.com/tesseract-ocr/tessdata_best/master/eng.traineddata -P /usr/local/share/tessdata
-    wget https://raw.githubusercontent.com/tesseract-ocr/tessdata_best/master/tha.traineddata -P /usr/local/share/tessdata
+    sudo wget https://raw.githubusercontent.com/tesseract-ocr/tessdata_best/master/eng.traineddata -P /usr/local/share/tessdata
+    sudo wget https://raw.githubusercontent.com/tesseract-ocr/tessdata_best/master/tha.traineddata -P /usr/local/share/tessdata
 ```
 sidenote : Tesseract provides three types of models:- `tessdata_fast`, `tessdata_best` and `tessdata`. `tessdata_fast` is the default, balances speed and accuracy. For fine-tuning always use `tessdata_best`. `tessdata` is the lagacy models. See [Tesseract](https://tesseract-ocr.github.io/tessdoc/Data-Files.html) for more details.
 
@@ -97,11 +97,11 @@ List the support languages on screen with this command `tesseract --list-langs`.
 ```
     cd
     mkdir images
-    wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1l-lUKGSAjCIhrhqgu959EGynNbnxyWlY' -O images/023.jpg
+    sudo wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1l-lUKGSAjCIhrhqgu959EGynNbnxyWlY' -O images/023.jpg
     tesseract -l tha images/023.jpg stdout
 ```
     
-## Install `tesstrain`
+## 2. Install `tesstrain`
 `tesstrain` is a set of Python tools that allow us to work with `make` files to train custom Tesseract models
 
 ```
@@ -112,8 +112,15 @@ List the support languages on screen with this command `tesseract --list-langs`.
 
 ## Create Training Data 
 
-## Get Language Data (langdata)
-
+### Get Language Data
+[langdata](https://github.com/tesseract-ocr/langdata) repository provides source training data for Tesseract for lots of languages. We need at least English data to begin with, plus additional languages we do training (Thai, in this case).
+Go to this [Google Drive folder](https://drive.google.com/drive/folders/1UZNBOdP7aAzLiTQrlFPoLIlojisw7jKi?usp=sharing) and download `eng` and `tha` to your local C drive
+```
+    mkdir langdata #on path where your heart desires
+    cd langdata
+    cp -r /mnt/c/.../eng .
+    cp -r /mnt/c/.../tha .   
+```
 
 ### Create ground truth and box files
 Tesseract 5 requires images with single-line text for training, we can run `text2image` tool (installed with Tesseract) with this [Python script](https://github.com/astutejoe/tesseract_tutorial/blob/main/split_training_text.py) to create ground truth image and box file (please install Python3 if not yet done).
@@ -151,21 +158,5 @@ First copy font file (.otf) to the font folder
 Or use existing Windows fonts by [following instruction here](https://x410.dev/cookbook/wsl/sharing-windows-fonts-with-wsl/):
 
 ## Training
-Ensure all those optional dependencies are installed and that Tesseract's build environment can locate them, go to `tesseract` folder and run this command `./configure`. You should see this result:
 
-```
-Configuration is done.
-You can now build and install tesseract by running:
-
-$ make
-$ sudo make install
-$ sudo ldconfig
-
-Documentation will not be built because asciidoc or xsltproc is missing.
-
-Training tools can be built and installed with:
-
-$ make training
-$ sudo make training-install
-```
 
