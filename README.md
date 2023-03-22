@@ -113,7 +113,7 @@ List the support languages on screen with this command `tesseract --list-langs`.
 ## 3. Create Training Data 
 
 ### 3.1 Get Language Data
-[langdata](https://github.com/tesseract-ocr/langdata) repository provides source training data for Tesseract for lots of languages. We need at least English data to begin with, plus additional languages we do training (Thai, in this case).
+[langdata_lstm](https://github.com/tesseract-ocr/langdata_lstm) repository provides source training data for Tesseract for lots of languages. We need at least English data to begin with, plus additional languages we do training (Thai, in this case).
 Go to this [Google Drive folder](https://drive.google.com/drive/folders/1UZNBOdP7aAzLiTQrlFPoLIlojisw7jKi?usp=sharing) and download `eng` and `tha` to your local C drive
 ```
     mkdir langdata #on path where your heart desires
