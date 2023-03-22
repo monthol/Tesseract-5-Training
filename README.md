@@ -190,13 +190,19 @@ lstmtraining \
 Loaded file data/JasmineD/checkpoints/JasmineD_checkpoint, unpacking...
 ```
 
-The training will create .lstmf for each successful training of an image under the ground truth folder and `.traineddata under `<model-name>` folder. We will try to optimize the BCER error rate by increase the number of iterations (default value is `10000`) in the next run.
-
-If something went wrong, we can start over by cleaning up with command :
+The training will create `.lstmf` file for each successful training of an image under the ground truth folder and `.traineddata` under `<model-name>` folder. Here We try to optimize the BCER error rate by increase the number of iterations (default value is `10000`) or the number of training data (`count` in the python script) in the next run.
+If something went wrong or maybe we want to increase `count` number, we can start over by cleaning up with command :
+    
 ```
     make clean MODEL_NAME=<model_name>
 ```
-5. Evaluate and deploy new model
+    
+## 5. Evaluate and deploy new model
+To deploy new model, just copy `<model-name>.traineddata` to tesseract 's `tessdata` folder 
+    
+```
+    cp tesstrain/data/<model-name>/<model-name>.traineddata /usr/local/share/tessdata
+```    
     
 To train handwriting text, first create one-line images of handwriting, labeling can be done with this [R package tool](https://github.com/arcruz0/tesseractgt) to help speed things up. Also, see [its blog post](https://arcruz0.github.io/posts/finetuning-tess/index.html) for training with addtional characters not included in `.unicharset` (e.g. ๚, ๛, ๏)
     
