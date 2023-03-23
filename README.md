@@ -144,7 +144,7 @@ See [Fonts for Tesseract training](https://tesseract-ocr.github.io/tessdoc/Fonts
  ```
 
 #### Installing new fonts on WSL
-First copy font file (.otf) to the font folder
+First copy font file (.otf) to the font folder. ([Font Chulalongkorn](https://www.chula.ac.th/download/8905/))
 
  ```
     cp /mnt/c/Users/<path to font file> /usr/local/share/fonts
