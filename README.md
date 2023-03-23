@@ -13,7 +13,7 @@ Enter WSL from Powershell terminal if you are not yet on Linux, then go to your 
     wsl
     cd
 ```
-
+For error: [Windows Subsystem For Linux has no Installed Distributions] (https://appuals.com/how-to-fix-windows-subsystem-for-linux-has-no-installed-distributions-error/)
 First updating sources, install all dependencies and training tools (copy/paste all and run in one go)
 
 ```
