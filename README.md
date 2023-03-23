@@ -156,7 +156,7 @@ First copy font file (.otf) to the font folder
 Or use existing Windows fonts by [following instruction here](https://x410.dev/cookbook/wsl/sharing-windows-fonts-with-wsl/):
 
 ### 3.3 Create ground truth and box files
-Tesseract 5 requires images with single-line text for training, for this we can use this [Python script](https://github.com/astutejoe/tesseract_tutorial/blob/main/split_training_text.py) to create ground truth images and transcription from our `langdata` as many as we like. This script in turn run [`text2image`](https://github.com/tesseract-ocr/tesseract/blob/main/doc/text2image.1.asc) tool that installed with Tesseract. (please install Python3 if not yet done). Edit this script to reflect our project-
+Tesseract 5 requires images with single-line text for training, for this we can use @AstuteJoe's [Python script](https://github.com/astutejoe/tesseract_tutorial/blob/main/split_training_text.py) (See also his accompanied [Youtube tutorial](https://www.youtube.com/watch?v=KE4xEzFGSU8)) to create ground truth images and transcription from our `langdata` as many as we like. This script in turn run [`text2image`](https://github.com/tesseract-ocr/tesseract/blob/main/doc/text2image.1.asc) tool that installed with Tesseract. (please install Python3 if not yet done). Edit this script to reflect our project-
 
 > Line 6 -- point to training text path (e.g. 'langdata/tha/tha.training_text')  
 > Line 14 -- new model name (e.g. use font name for model name 'tesstrain/data/<font-name>-ground-truth')  
