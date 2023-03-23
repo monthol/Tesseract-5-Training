@@ -102,7 +102,7 @@ List the support languages on screen with this command `tesseract --list-langs`.
 ```
     
 ## 2. Install `tesstrain`
-`tesstrain` is a set of Python tools that allow us to work with `make` files to train custom Tesseract models
+[`tesstrain`](https://github.com/tesseract-ocr/tesstrain) is a set of Python tools that allow us to work with `make` files to train custom Tesseract models
 
 ```
     git clone https://github.com/tesseract-ocr/tesstrain.git
@@ -122,6 +122,7 @@ Go to this [Google Drive folder](https://drive.google.com/drive/folders/1UZNBOdP
     cp -r /mnt/c/.../tha .   
 ```
 ### 3.2 Get Fonts
+See [Fonts for Tesseract training](https://tesseract-ocr.github.io/tessdoc/Fonts.html) for more detail.
 #### List all available fonts on local computer
 
 ```
